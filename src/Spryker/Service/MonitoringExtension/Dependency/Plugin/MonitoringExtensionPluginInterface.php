@@ -5,11 +5,13 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace Spryker\Shared\MonitoringExtension;
+namespace Spryker\Service\MonitoringExtension\Dependency\Plugin;
 
-interface MonitoringInterface
+interface MonitoringExtensionPluginInterface
 {
     /**
+     * @api
+     *
      * @param string $message
      * @param \Exception|\Throwable $exception
      *
@@ -19,6 +21,8 @@ interface MonitoringInterface
 
     /**
      * Sets the name of the application, the current store and the environment.
+     *
+     * @api
      *
      * @param string|null $application
      * @param string|null $store
@@ -31,6 +35,8 @@ interface MonitoringInterface
     /**
      * Name of the transaction (e.g. module/controller/action).
      *
+     * @api
+     *
      * @param string $name
      *
      * @return void
@@ -40,6 +46,8 @@ interface MonitoringInterface
     /**
      * Start recording of the current transaction.
      *
+     * @api
+     *
      * @return void
      */
     public function markStartTransaction(): void;
@@ -47,6 +55,8 @@ interface MonitoringInterface
     /**
      * Stop recording the web transaction. This can be used to exclude time consuming operations that happen after
      * the request is completed.
+     *
+     * @api
      *
      * @return void
      */
@@ -56,6 +66,8 @@ interface MonitoringInterface
      * Do not generate metrics for this transaction. This can be used for operations that are not relevant for the
      * statistics (e.g. to exclude the load balancer heartbeat check or very time consuming operations).
      *
+     * @api
+     *
      * @return void
      */
     public function markIgnoreTransaction(): void;
@@ -63,11 +75,15 @@ interface MonitoringInterface
     /**
      * Marks this transaction as a console command (e.g. for cronjobs)
      *
+     * @api
+     *
      * @return void
      */
     public function markAsConsoleCommand(): void;
 
     /**
+     * @api
+     *
      * @param string $key
      * @param mixed $value
      *
@@ -76,6 +92,8 @@ interface MonitoringInterface
     public function addCustomParameter(string $key, $value): void;
 
     /**
+     * @api
+     *
      * @param string $tracer classname::function_name.
      *
      * @return void
